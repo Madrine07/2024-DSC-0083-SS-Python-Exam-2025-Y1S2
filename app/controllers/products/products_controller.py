@@ -35,7 +35,7 @@ def create_product():
     return jsonify({
         "message": "Product created successfully.",
         "product": {
-            "id": new_product.id,
+            "id": new_product.product_id,
             "product_name": new_product.name,
             "category_id": new_product.category_id,
             "image":new_product.image,
