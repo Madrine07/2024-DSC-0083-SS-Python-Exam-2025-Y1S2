@@ -91,7 +91,7 @@ def update_product(id):
         }), 200
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"error": str(e)}), HTTP_500_INTERNAL_SERVER_ERROR
 
 # Delete a product by ID
 @products.route('/delete/<int:id>', methods=['DELETE'])
@@ -100,12 +100,12 @@ def delete_product(id):
         product = Product.query.get(id)
 
         if not product:
-            return jsonify({"error": "Product not found."}), 404
+            return jsonify({"error": "Product not found."}), HTTP_404_NOT_FOUND
 
         db.session.delete(product)
         db.session.commit()
 
-        return jsonify({"message": f"Product with ID {id} deleted successfully."}), 200
+        return jsonify({"message": f"Product with ID {id} deleted successfully."}), HTTP_200_OK
 
     except Exception as e:
-        return jsonify({"error": str(e)}), 500
+        return jsonify({"error": str(e)}), HTTP_500_INTERNAL_SERVER_ERROR
